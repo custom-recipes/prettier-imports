@@ -62,7 +62,7 @@ export default RecipeBuilder()
             packageJson.prettier.importOrderSortSpecifiers = pluginConfig.importOrderSortSpecifiers;
             packageJson.prettier.importOrderGroupNamespaceSpecifiers = pluginConfig.importOrderGroupNamespaceSpecifiers;
 
-            return JSON.stringify(packageJson);
+            return JSON.stringify(packageJson, null, 2);
         }
     })
     .build()
