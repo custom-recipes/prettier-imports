@@ -1,6 +1,9 @@
 import Filehound from "filehound"
+import keys from "lodash.keys"
+import keyBy from "lodash.keyby"
 import { RecipeBuilder, paths } from "@blitzjs/installer"
-import { sep as pathSeparator } from "path"
+import { sep as filePathSeparator } from "path"
+import { flatten, unflatten } from "flat"
 
 const pluginConfig = {
     importOrder: () => {
@@ -17,13 +20,20 @@ const pluginConfig = {
             .directory()
             .findSync()
 
-        const optionConfig = directoryStructure.map((path) => {
-            // Replace \\ or \ with / in path.
-            const configPath = path.split(pathSeparator).join("/")
+        // Extract subdirectories.
+        // See: https://github.com/custom-recipes/prettier-imports/issues/1
+        const subDirectories = keys(
+            flatten(
+                unflatten(keyBy(directoryStructure), {
+                    object: true,
+                    overwrite: true,
+                    delimiter: filePathSeparator,
+                })
+            )
+        )
 
-            // See: https://github.com/trivago/prettier-plugin-sort-imports#importorder
-            return `^${configPath}/(.*)$`
-        })
+        // See: https://github.com/trivago/prettier-plugin-sort-imports#importorder
+        const optionConfig = subDirectories.map((filePath) => `^${filePath.split(".").join("/")}/(.*)$`)
 
         return optionConfig
     },
