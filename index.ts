@@ -34,6 +34,10 @@ const pluginConfig = {
 
         // See: https://github.com/trivago/prettier-plugin-sort-imports#importorder
         const optionConfig = subDirectories.map((filePath) => `^${filePath.split(".").join("/")}/(.*)$`)
+        
+        // Relative path imports
+        // See: https://github.com/trivago/prettier-plugin-sort-imports#usage
+        optionConfig.push("^[./]");
 
         return optionConfig
     },
