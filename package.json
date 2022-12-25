@@ -23,7 +23,7 @@
 	},
 	"homepage": "https://github.com/custom-recipes/prettier-imports#readme",
 	"dependencies": {
-		"@blitzjs/installer": "^0.45.3",
+		"blitz": "^2.0.0-beta.20",
 		"filehound": "^1.17.5",
 		"flat": "^5.0.2",
 		"lodash.keyby": "^4.6.0",

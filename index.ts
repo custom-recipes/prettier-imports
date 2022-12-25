@@ -1,7 +1,7 @@
 import Filehound from "filehound"
 import keys from "lodash.keys"
 import keyBy from "lodash.keyby"
-import { RecipeBuilder, paths } from "@blitzjs/installer"
+import { RecipeBuilder, paths } from "blitz/installer"
 import { sep as filePathSeparator } from "path"
 import { flatten, unflatten } from "flat"
 
